@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# merge-csv.py - update contents of one CSV with those of another
+
+# Authors:
+#   Basil Contovounesios <contovob@tcd.ie>
+#   Salil Kulkarni <sakulkar@tcd.ie>
 
 import argparse
 import csv
