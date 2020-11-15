@@ -134,13 +134,21 @@ def main():
     with open(args.symbols) as symbols_file:
         captcha_symbols = symbols_file.readline().strip('\n')
 
-    # physical_devices = tf.config.experimental.list_physical_devices('GPU')
-    # assert len(physical_devices) > 0, "No GPU available!"
-    # tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+            logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+            print(len(gpus), 'Physical GPUs,',
+                  len(logical_gpus), 'Logical GPUs')
+        except RuntimeError as e:
+            # Memory growth must be set before GPUs have been initialised.
+            print(e)
 
     # with tf.device('/device:GPU:0'):
-    with tf.device('/device:CPU:0'):
-    # with tf.device('/device:XLA_CPU:0'):
+    # with tf.device('/device:CPU:0'):
+    if True:
         model = create_model(args.length, len(captcha_symbols), (args.height, args.width, 3))
 
         if args.input_model is not None:
