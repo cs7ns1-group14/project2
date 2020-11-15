@@ -59,7 +59,7 @@ def main():
                           optimizer=keras.optimizers.Adam(1e-3, amsgrad=True),
                           metrics=['accuracy'])
 
-            for x in os.listdir(args.captcha_dir):
+            for x in sorted(os.listdir(args.captcha_dir)):
                 # load image and preprocess it
                 raw_data = cv2.imread(os.path.join(args.captcha_dir, x))
                 rgb_data = cv2.cvtColor(raw_data, cv2.COLOR_BGR2RGB)
