@@ -52,7 +52,7 @@ def reporter(msg, total):
     return update
 
 
-def get_captcha_name(args):
+def make_captcha_name(args):
     string = ''.join(secrets.choice(args.symbols) for _ in range(args.length))
     encoded = base64.urlsafe_b64encode(string.encode()).decode()
     path = os.path.join(args.output, f'{encoded}.png')
@@ -71,7 +71,7 @@ def main():
     abs_dir = os.path.abspath(args.output)
     progress = reporter(f'Generating CAPTCHAs in {abs_dir}', args.count)
     for i in range(args.count):
-        image.write(*get_captcha_name(args))
+        image.write(*make_captcha_name(args))
         progress(i + 1)
 
 
