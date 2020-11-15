@@ -165,7 +165,7 @@ def main():
 
         callbacks = [keras.callbacks.EarlyStopping(patience=3),
                      # keras.callbacks.CSVLogger('log.csv'),
-                     keras.callbacks.ModelCheckpoint(args.output_model_name+'.h5', save_best_only=False)]
+                     keras.callbacks.ModelCheckpoint(args.output_model_name+'.h5')]
 
         # Save the model architecture to JSON
         with open(args.output_model_name+".json", "w") as json_file:
