@@ -55,7 +55,10 @@ class ImageSequence(keras.utils.Sequence):
         y = [numpy.zeros((self.batch_size, len(self.captcha_symbols)), dtype=numpy.uint8) for i in range(self.captcha_length)]
 
         for i in range(self.batch_size):
-            random_image_label = random.choice(list(self.files.keys()))
+            my_files = list(self.files.keys())
+            if not my_files:
+                break
+            random_image_label = random.choice(my_files)
             random_image_file = self.files[random_image_label]
 
             # We've used this image now, so we can't repeat it in this iteration
