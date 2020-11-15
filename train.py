@@ -42,7 +42,6 @@ class ImageSequence(keras.utils.Sequence):
 
         file_list = os.listdir(self.directory_name)
         self.files = dict(zip(map(lambda x: x.split('.')[0], file_list), file_list))
-        self.used_files = []
         self.count = len(file_list)
 
     def __len__(self):
@@ -60,7 +59,7 @@ class ImageSequence(keras.utils.Sequence):
             random_image_file = self.files[random_image_label]
 
             # We've used this image now, so we can't repeat it in this iteration
-            self.used_files.append(self.files.pop(random_image_label))
+            self.files.pop(random_image_label)
 
             # We have to scale the input pixel values to the range [0, 1] for
             # Keras so we divide by 255 since the image is 8-bit RGB
