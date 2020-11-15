@@ -11,22 +11,27 @@ import os
 import random
 
 
-# Build a Keras model given some parameters
-def create_model(captcha_length, captcha_num_symbols, input_shape, model_depth=5, module_size=2):
+def create_model(captcha_length, captcha_num_symbols, input_shape,
+                 model_depth=5, module_size=2):
+    """Return a Keras model based on some parameters."""
     input_tensor = keras.Input(input_shape)
     x = input_tensor
     for i, module_length in enumerate([module_size] * model_depth):
         for j in range(module_length):
-            x = keras.layers.Conv2D(32*2**min(i, 3), kernel_size=3, padding='same', kernel_initializer='he_uniform')(x)
+            x = keras.layers.Conv2D(32 * 2 ** min(i, 3), kernel_size=3,
+                                    padding='same', activation='relu',
+                                    kernel_initializer='he_uniform')(x)
+            x = keras.layers.Conv2D(32 * 2 ** min(i, 3), kernel_size=3,
+                                    padding='same', activation='relu',
+                                    kernel_initializer='he_uniform')(x)
             x = keras.layers.BatchNormalization()(x)
-            x = keras.layers.Activation('relu')(x)
         x = keras.layers.MaxPooling2D(2)(x)
 
     x = keras.layers.Flatten()(x)
-    x = [keras.layers.Dense(captcha_num_symbols, activation='softmax', name='char_%d'%(i+1))(x) for i in range(captcha_length)]
-    model = keras.Model(inputs=input_tensor, outputs=x)
-
-    return model
+    x = [keras.layers.Dense(captcha_num_symbols, activation='softmax',
+                            name=f'char_{i + 1}')(x)
+         for i in range(captcha_length)]
+    return keras.Model(inputs=input_tensor, outputs=x)
 
 
 # We have a little hack here - we save CAPTCHAs as BASE64.NUM.png
