@@ -6,6 +6,7 @@ import tensorflow as tf
 import tensorflow.keras as keras
 
 import argparse
+import base64
 import os
 import random
 
@@ -28,6 +29,14 @@ def create_model(captcha_length, captcha_num_symbols, input_shape, model_depth=5
     return model
 
 
+# We have a little hack here - we save CAPTCHAs as BASE64.NUM.png
+# if there is more than one CAPTCHA with the label BASE64.
+# So the real label should have the '.NUM' stripped out.
+def decode_captcha(path):
+    base = os.path.splitext(path)[0].rsplit('.', 1)[0]
+    return base64.urlsafe_b64decode(base.encode()).decode()
+
+
 # A Sequence represents a dataset for training in Keras
 # In this case, we have a folder full of images
 # Elements of a Sequence are *batches* of images, of some size batch_size
@@ -41,7 +50,7 @@ class ImageSequence(keras.utils.Sequence):
         self.captcha_height = captcha_height
 
         file_list = os.listdir(self.directory_name)
-        self.files = dict(zip(map(lambda x: x.split('.')[0], file_list), file_list))
+        self.files = {path: decode_captcha(path) for path in file_list}
         self.count = len(file_list)
 
     def __len__(self):
@@ -52,26 +61,18 @@ class ImageSequence(keras.utils.Sequence):
         y = [np.zeros((self.batch_size, len(self.captcha_symbols)), dtype=np.uint8) for i in range(self.captcha_length)]
 
         for i in range(self.batch_size):
-            my_files = list(self.files.keys())
-            if not my_files:
+            file_list = list(self.files.keys())
+            if not file_list:
                 break
-            random_image_label = random.choice(my_files)
-            random_image_file = self.files[random_image_label]
-
+            random_image_file = random.choice(file_list)
             # We've used this image now, so we can't repeat it in this iteration
-            self.files.pop(random_image_label)
+            random_image_label = self.files.pop(random_image_file)
 
             # We have to scale the input pixel values to the range [0, 1] for
             # Keras so we divide by 255 since the image is 8-bit RGB
             raw_data = cv2.imread(os.path.join(self.directory_name, random_image_file))
             rgb_data = cv2.cvtColor(raw_data, cv2.COLOR_BGR2RGB)
-            processed_data = np.array(rgb_data) / 255.0
-            X[i] = processed_data
-
-            # We have a little hack here - we save captchas as TEXT_num.png if there is more than one captcha with the text "TEXT"
-            # So the real label should have the "_num" stripped out.
-
-            random_image_label = random_image_label.split('_')[0]
+            X[i] = rgb_data / 255.0
 
             for j, ch in enumerate(random_image_label):
                 y[j][i, :] = 0
