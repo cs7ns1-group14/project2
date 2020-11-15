@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-import os
 import cv2
-import numpy
-import random
-import argparse
+import numpy as np
 import tensorflow as tf
 import tensorflow.keras as keras
+
+import argparse
+import os
+import random
 
 
 # Build a Keras model given some parameters
@@ -45,11 +46,11 @@ class ImageSequence(keras.utils.Sequence):
         self.count = len(file_list)
 
     def __len__(self):
-        return int(numpy.floor(self.count / self.batch_size))
+        return int(np.floor(self.count / self.batch_size))
 
     def __getitem__(self, idx):
-        X = numpy.zeros((self.batch_size, self.captcha_height, self.captcha_width, 3), dtype=numpy.float32)
-        y = [numpy.zeros((self.batch_size, len(self.captcha_symbols)), dtype=numpy.uint8) for i in range(self.captcha_length)]
+        X = np.zeros((self.batch_size, self.captcha_height, self.captcha_width, 3), dtype=np.float32)
+        y = [np.zeros((self.batch_size, len(self.captcha_symbols)), dtype=np.uint8) for i in range(self.captcha_length)]
 
         for i in range(self.batch_size):
             my_files = list(self.files.keys())
@@ -65,7 +66,7 @@ class ImageSequence(keras.utils.Sequence):
             # Keras so we divide by 255 since the image is 8-bit RGB
             raw_data = cv2.imread(os.path.join(self.directory_name, random_image_file))
             rgb_data = cv2.cvtColor(raw_data, cv2.COLOR_BGR2RGB)
-            processed_data = numpy.array(rgb_data) / 255.0
+            processed_data = np.array(rgb_data) / 255.0
             X[i] = processed_data
 
             # We have a little hack here - we save captchas as TEXT_num.png if there is more than one captcha with the text "TEXT"
