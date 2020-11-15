@@ -58,7 +58,7 @@ def make_captcha_name(args):
     path = os.path.join(args.output, f'{encoded}.png')
     version = 1
     while os.path.exists(path):
-        path = os.path.join(args.output, f'{encoded}_{version}.png')
+        path = os.path.join(args.output, f'{encoded}.{version}.png')
         version += 1
     return string, path
 
