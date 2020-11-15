@@ -15,7 +15,8 @@ import tensorflow.keras as keras
 
 def decode(characters, y):
     y = numpy.argmax(numpy.array(y), axis=2)[:,0]
-    return ''.join([characters[x] for x in y])
+    result = ''.join([characters[x] for x in y])
+    return result.replace(' ', '')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -42,7 +43,7 @@ def main():
         exit(1)
 
     symbols_file = open(args.symbols, 'r')
-    captcha_symbols = symbols_file.readline().strip()
+    captcha_symbols = symbols_file.readline().strip('\n')
     symbols_file.close()
 
     print("Classifying captchas with symbol set {" + captcha_symbols + "}")
@@ -66,7 +67,7 @@ def main():
                 (c, h, w) = image.shape
                 image = image.reshape([-1, c, h, w])
                 prediction = model.predict(image)
-                output_file.write(x + ", " + decode(captcha_symbols, prediction) + "\n")
+                output_file.write(x + "," + decode(captcha_symbols, prediction) + "\n")
 
                 print('Classified ' + x)
 
