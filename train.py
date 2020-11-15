@@ -62,7 +62,7 @@ class ImageSequence(keras.utils.Sequence):
         return int(np.floor(self.count / self.batch_size))
 
     def __getitem__(self, idx):
-        X = np.zeros((self.batch_size, self.captcha_height, self.captcha_width, 3), dtype=np.float32)
+        X = np.zeros((self.batch_size, self.captcha_height, self.captcha_width, 1), dtype=np.float32)
         y = [np.zeros((self.batch_size, len(self.captcha_symbols)), dtype=np.uint8) for i in range(self.captcha_length)]
 
         for i in range(self.batch_size):
@@ -70,14 +70,14 @@ class ImageSequence(keras.utils.Sequence):
             if not file_list:
                 break
             random_image_file = random.choice(file_list)
-            # We've used this image now, so we can't repeat it in this iteration
+            # Don't reuse image in this iteration
             random_image_label = self.files.pop(random_image_file)
 
             # We have to scale the input pixel values to the range [0, 1] for
             # Keras so we divide by 255 since the image is 8-bit RGB
-            raw_data = cv2.imread(os.path.join(self.directory_name, random_image_file))
-            rgb_data = cv2.cvtColor(raw_data, cv2.COLOR_BGR2RGB)
-            X[i] = rgb_data / 255.0
+            path = os.path.join(self.directory_name, random_image_file)
+            raw_data = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+            X[i] = np.expand_dims(raw_data / 255.0, axis=2)
 
             for j, ch in enumerate(random_image_label):
                 y[j][i, :] = 0
@@ -154,7 +154,8 @@ def main():
     # with tf.device('/device:GPU:0'):
     # with tf.device('/device:CPU:0'):
     if True:
-        model = create_model(args.length, len(captcha_symbols), (args.height, args.width, 3))
+        model = create_model(args.length, len(captcha_symbols),
+                             (args.height, args.width, 1))
 
         if args.input_model is not None:
             model.load_weights(args.input_model)
