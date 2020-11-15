@@ -1,0 +1,548 @@
+┌[contovob@lg12-27] ~
+└$ ipython3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.13.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: import cv2
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-1-c8ec22b3e787> in <module>
+----> 1 import cv2
+
+ModuleNotFoundError: No module named 'cv2'
+
+In [2]:
+Do you really want to exit ([y]/n)?
+┌[contovob@lg12-27] ~
+└$ la
+total 216K
+drwx------ 16 contovob ugrad 4.0K Nov 12 11:23 .cache/
+drwxrwsr-x  4 contovob ugrad 4.0K Oct 25 11:37 .conda/
+drwx------ 14 contovob ugrad 4.0K Nov 12 11:18 .config/
+drwx------  2 contovob ugrad 4.0K Oct 25 11:09 .emacs.d/
+drwx------  3 contovob ugrad 4.0K Oct 27 22:33 .gnupg/
+drwxr-xr-x  5 contovob ugrad 4.0K Nov 12 11:10 .ipython/
+drwxr-xr-x  2 contovob ugrad 4.0K Nov 12 11:18 .keras/
+drwx------  6 contovob ugrad 4.0K Oct 27 22:29 .local/
+drwx------  5 contovob ugrad 4.0K Oct 27 22:32 .mozilla/
+drwx------  3 contovob ugrad 4.0K Nov 12 11:42 .nv/
+drwxrwxrwt  2 contovob ugrad 4.0K Oct 27 22:35 .pcsc10/
+drwx------  2 contovob ugrad 4.0K Nov 12 14:42 .ssh/
+drwxr-xr-x  3 contovob ugrad 4.0K Oct 28 16:22 .terminfo/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Desktop/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Documents/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Downloads/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Music/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Pictures/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Public/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Templates/
+drwxr-xr-x  2 contovob ugrad 4.0K Oct 27 22:29 Videos/
+drwxr-xr-x 12 contovob ugrad 4.0K Oct 25 11:08 dotfiles/
+drwxr-xr-x  2 contovob ugrad 4.0K Nov 12 14:51 foo/
+drwxr-xr-x  5 contovob ugrad 4.0K Nov 12 11:10 lg12-test/
+drwxr-xr-x  6 contovob ugrad 4.0K Oct 29 14:09 test/
+drwxr-xr-t  2 contovob ugrad 4.0K Oct 27 22:29 thinclient_drives/
+drwx--x---  2 contovob ugrad 4.0K Oct 17  2019 www/
+-rw-------  1 contovob ugrad   53 Nov 12 11:18 .Xauthority
+-rw-r--r--  1 contovob ugrad 1.6K Oct 25 11:10 .bashrc
+-rw-r--r--  1 contovob ugrad 2.0K Oct 28 17:05 .bash_aliases
+-rw-r--r--  1 contovob ugrad  926 Oct 25 11:10 .bash_completion
+-rw-------  1 contovob ugrad 4.6K Nov 12 16:02 .bash_history
+-rw-r--r--  1 contovob ugrad  251 Oct 25 11:08 .bash_logout
+-rw-r--r--  1 contovob ugrad 1.7K Oct 25 11:09 .profile
+-rw-------  1 contovob ugrad  143 Nov 11 14:52 .python_history
+-rw-r--r--  1 contovob ugrad 1.3K Oct 25 11:09 .tmux.conf
+-rw-------  1 contovob ugrad    3 Oct 28 17:41 .tramp_history
+-rw-r--r--  1 contovob ugrad  21K Oct 27 22:36 .xorgxrdp.10.log
+-rw-r--r--  1 contovob ugrad  21K Oct 27 22:35 .xorgxrdp.10.log.old
+-rw-r--r--  1 contovob ugrad  131 Oct 27 22:35 .xsessionrc
+-rw-------  1 contovob ugrad  12K Oct 27 22:35 .xsession-errors
+┌[contovob@lg12-27] ~
+└$ ls lg12-test/
+bin  include  lib  lib64  pyvenv.cfg
+┌[contovob@lg12-27] ~
+└$ rm -rf lg12-test/
+┌[contovob@lg12-27] ~
+└$ mkdir src
+mkdir: created directory 'src'
+┌[contovob@lg12-27] ~
+└$ cd src/
+┌[contovob@lg12-27] ~/src
+└$ git clone https://github.com/cs7ns1-group14/project2.git
+Cloning into 'project2'...
+remote: Enumerating objects: 2065, done.
+remote: Counting objects: 100% (2065/2065), done.
+remote: Compressing objects: 100% (2038/2038), done.
+remote: Total 2065 (delta 27), reused 2060 (delta 22), pack-reused 0
+Receiving objects: 100% (2065/2065), 31.88 MiB | 19.83 MiB/s, done.
+Resolving deltas: 100% (27/27), done.
+Updating files: 100% (2008/2008), done.
+┌[contovob@lg12-27] ~/src
+└$ cd project2/
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ./generate.py -h
+Traceback (most recent call last):
+  File "./generate.py", line 10, in <module>
+    from captcha.image import ImageCaptcha
+ModuleNotFoundError: No module named 'captcha'
+┌[contovob@lg12-27] (master=) ~/src/project2 [1]
+└$ la
+total 24K
+drwxr-xr-x 8 contovob ugrad 4.0K Nov 15 04:03 .git/
+drwxr-xr-x 4 contovob ugrad 4.0K Nov 15 04:03 img/
+drwxr-xr-x 2 contovob ugrad 4.0K Nov 15 04:03 syms/
+-rwxr-xr-x 1 contovob ugrad 2.6K Nov 15 04:03 generate.py*
+-rwxr-xr-x 1 contovob ugrad 7.4K Nov 15 04:03 train.py*
+┌[contovob@lg12-27] (master=) ~/src/project2
+(failed reverse-i-search)`vn': ssh-keygen -t rsa -b 4096 -C 'conto^Cb@tcd.ie'
+┌[contovob@lg12-27] (master=) ~/src/project2 [130]
+└$ python3 -m venv venv
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt-get install python3-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: ['/users/ugrad/contovob/src/project2/venv/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']
+
+┌[contovob@lg12-27] (master=) ~/src/project2 [1]
+└$ la
+total 28K
+drwxr-xr-x 8 contovob ugrad 4.0K Nov 15 04:03 .git/
+drwxr-xr-x 4 contovob ugrad 4.0K Nov 15 04:03 img/
+drwxr-xr-x 2 contovob ugrad 4.0K Nov 15 04:03 syms/
+drwxr-xr-x 5 contovob ugrad 4.0K Nov 15 04:04 venv/
+-rwxr-xr-x 1 contovob ugrad 2.6K Nov 15 04:03 generate.py*
+-rwxr-xr-x 1 contovob ugrad 7.4K Nov 15 04:03 train.py*
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ cd venv/
+la┌[contovob@lg12-27] (master=) ~/src/project2/venv
+└$ la
+total 16K
+drwxr-xr-x 2 contovob ugrad 4.0K Nov 15 04:04 bin/
+drwxr-xr-x 2 contovob ugrad 4.0K Nov 15 04:04 include/
+drwxr-xr-x 3 contovob ugrad 4.0K Nov 15 04:04 lib/
+lrwxrwxrwx 1 contovob ugrad    3 Nov 15 04:04 lib64 -> lib/
+-rw-r--r-- 1 contovob ugrad   69 Nov 15 04:04 pyvenv.cfg
+┌[contovob@lg12-27] (master=) ~/src/project2/venv
+└$ cd ..
+rm┌[contovob@lg12-27] (master=) ~/src/project2
+└$ rm -rf venv/
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ pip3 install --user -U captcha
+Collecting captcha
+  Downloading captcha-0.3-py3-none-any.whl (101 kB)
+     |████████████████████████████████| 101 kB 4.2 MB/s
+Requirement already satisfied, skipping upgrade: Pillow in /usr/lib/python3/dist-packages (from captcha) (7.0.0)
+Installing collected packages: captcha
+Successfully installed captcha-0.3
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ./generate.py -h
+usage: generate.py [-h] [-V] [-l LENGTH] [-H HEIGHT] [-W WIDTH] -S FILE -c COUNT -o DIR
+
+Generate CAPTCHAs for training.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  -l LENGTH, --length LENGTH
+                        CAPTCHA character length (default: 6)
+  -H HEIGHT, --height HEIGHT
+                        CAPTCHA height in pixels (default: 64)
+  -W WIDTH, --width WIDTH
+                        CAPTCHA width in pixels (default: 128)
+
+required arguments:
+  -S FILE, --symbol-file FILE
+                        file with CAPTCHA symbols to use
+  -c COUNT, --count COUNT
+                        number of CAPTCHAs to generate
+  -o DIR, --output DIR  directory to store generated CAPTCHAs
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ./generate.py -S syms/p2.txt -c 128000 -o train
+Using symbol set:  !"#$%&()*+-/:<=>?@[]^_abcdefghijklmnopqrstuvwxyz~
+Generating CAPTCHAs in /users/ugrad/contovob/src/project2/train...100%
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ls train | wc -l
+^C
+┌[contovob@lg12-27] (master=) ~/src/project2 [130]
+└$ ./generate.py -S syms/hard.txt -c 32000 -o train
+Using symbol set:  "*+-/=_
+Generating CAPTCHAs in /users/ugrad/contovob/src/project2/train...100%
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ls valid/ | wc -l
+16000
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ ls
+img  syms  train  valid  generate.py  train.py
+┌[contovob@lg12-27] (master=) ~/src/project2
+(reverse-i-search)`train': ./generate.py -S syms/hard.txt -c 32000 -o ^Cain
+┌[contovob@lg12-27] (master=) ~/src/project2 [130]
+└$ condarun.sh ./train.py -h
+usage: train.py [-h] [--width WIDTH] [--height HEIGHT] [--length LENGTH] [--batch-size BATCH_SIZE] [--train-dataset TRAIN_DATASET] [--validate-dataset VALIDATE_DATASET]
+                [--output-model-name OUTPUT_MODEL_NAME] [--input-model INPUT_MODEL] [--epochs EPOCHS] [--symbols SYMBOLS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --width WIDTH         Width of captcha image
+  --height HEIGHT       Height of captcha image
+  --length LENGTH       Length of captchas in characters
+  --batch-size BATCH_SIZE
+                        How many images in training captcha batches
+  --train-dataset TRAIN_DATASET
+                        Where to look for the training image dataset
+  --validate-dataset VALIDATE_DATASET
+                        Where to look for the validation image dataset
+  --output-model-name OUTPUT_MODEL_NAME
+                        Where to save the trained model
+  --input-model INPUT_MODEL
+                        Where to look for the input model to continue training
+  --epochs EPOCHS       How many training epochs to run
+  --symbols SYMBOLS     File with the symbols to use in captchas
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$ condarun.sh ./train.py --width 128 --height 64 --length 6 --batch-size 32 --train-dataset train --validate-dataset valid --output-model-name model1 --epochs 32 --symbols syms/p2.txt
+2020-11-15 04:50:41.931027: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2020-11-15 04:50:41.985298: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:41.985728: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1561] Found device 0 with properties:
+pciBusID: 0000:01:00.0 name: GeForce GT 730 computeCapability: 3.5
+coreClock: 0.9015GHz coreCount: 2 deviceMemorySize: 1.96GiB deviceMemoryBandwidth: 37.33GiB/s
+2020-11-15 04:50:41.988282: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-11-15 04:50:41.994170: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2020-11-15 04:50:41.997578: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2020-11-15 04:50:41.999786: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2020-11-15 04:50:42.003177: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2020-11-15 04:50:42.006126: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2020-11-15 04:50:42.011480: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-11-15 04:50:42.011587: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.011938: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.012198: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1703] Adding visible gpu devices: 0
+2020-11-15 04:50:42.012503: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-11-15 04:50:42.018446: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3199980000 Hz
+2020-11-15 04:50:42.018841: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5625cfda3bc0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-11-15 04:50:42.018855: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-11-15 04:50:42.018981: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.019240: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1561] Found device 0 with properties:
+pciBusID: 0000:01:00.0 name: GeForce GT 730 computeCapability: 3.5
+coreClock: 0.9015GHz coreCount: 2 deviceMemorySize: 1.96GiB deviceMemoryBandwidth: 37.33GiB/s
+2020-11-15 04:50:42.019278: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-11-15 04:50:42.019299: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2020-11-15 04:50:42.019313: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2020-11-15 04:50:42.019326: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2020-11-15 04:50:42.019344: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2020-11-15 04:50:42.019356: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2020-11-15 04:50:42.019370: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-11-15 04:50:42.019416: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.019711: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.019934: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1703] Adding visible gpu devices: 0
+2020-11-15 04:50:42.019960: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-11-15 04:50:42.049479: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-11-15 04:50:42.049515: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1108]      0
+2020-11-15 04:50:42.049520: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1121] 0:   N
+2020-11-15 04:50:42.049715: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.050042: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.050292: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so retu
+rning NUMA node zero
+2020-11-15 04:50:42.050579: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1247] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 1696 MB memory) -> physical GPU (devi
+ce: 0, name: GeForce GT 730, pci bus id: 0000:01:00.0, compute capability: 3.5)
+2020-11-15 04:50:42.051856: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5625d0268520 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2020-11-15 04:50:42.051868: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GT 730, Compute Capability 3.5
+1 Physical GPUs, 1 Logical GPUs
+Model: "model"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input_1 (InputLayer)            [(None, 64, 128, 3)] 0
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 64, 128, 32)  896         input_1[0][0]
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 64, 128, 32)  128         conv2d[0][0]
+__________________________________________________________________________________________________
+activation (Activation)         (None, 64, 128, 32)  0           batch_normalization[0][0]
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 64, 128, 32)  9248        activation[0][0]
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 64, 128, 32)  128         conv2d_1[0][0]
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 64, 128, 32)  0           batch_normalization_1[0][0]
+__________________________________________________________________________________________________
+max_pooling2d (MaxPooling2D)    (None, 32, 64, 32)   0           activation_1[0][0]
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 32, 64, 64)   18496       max_pooling2d[0][0]
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 32, 64, 64)   256         conv2d_2[0][0]
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 32, 64, 64)   0           batch_normalization_2[0][0]
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 32, 64, 64)   36928       activation_2[0][0]
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 32, 64, 64)   256         conv2d_3[0][0]
+__________________________________________________________________________________________________
+activation_3 (Activation)       (None, 32, 64, 64)   0           batch_normalization_3[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_1 (MaxPooling2D)  (None, 16, 32, 64)   0           activation_3[0][0]
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 16, 32, 128)  73856       max_pooling2d_1[0][0]
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 16, 32, 128)  512         conv2d_4[0][0]
+__________________________________________________________________________________________________
+activation_4 (Activation)       (None, 16, 32, 128)  0           batch_normalization_4[0][0]
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 16, 32, 128)  147584      activation_4[0][0]
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 16, 32, 128)  512         conv2d_5[0][0]
+__________________________________________________________________________________________________
+activation_5 (Activation)       (None, 16, 32, 128)  0           batch_normalization_5[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_2 (MaxPooling2D)  (None, 8, 16, 128)   0           activation_5[0][0]
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 8, 16, 256)   295168      max_pooling2d_2[0][0]
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 8, 16, 256)   1024        conv2d_6[0][0]
+__________________________________________________________________________________________________
+activation_6 (Activation)       (None, 8, 16, 256)   0           batch_normalization_6[0][0]
+__________________________________________________________________________________________________
+conv2d_7 (Conv2D)               (None, 8, 16, 256)   590080      activation_6[0][0]
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 8, 16, 256)   1024        conv2d_7[0][0]
+__________________________________________________________________________________________________
+activation_7 (Activation)       (None, 8, 16, 256)   0           batch_normalization_7[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_3 (MaxPooling2D)  (None, 4, 8, 256)    0           activation_7[0][0]
+__________________________________________________________________________________________________
+conv2d_8 (Conv2D)               (None, 4, 8, 256)    590080      max_pooling2d_3[0][0]
+__________________________________________________________________________________________________
+batch_normalization_8 (BatchNor (None, 4, 8, 256)    1024        conv2d_8[0][0]
+__________________________________________________________________________________________________
+activation_8 (Activation)       (None, 4, 8, 256)    0           batch_normalization_8[0][0]
+__________________________________________________________________________________________________
+conv2d_9 (Conv2D)               (None, 4, 8, 256)    590080      activation_8[0][0]
+__________________________________________________________________________________________________
+batch_normalization_9 (BatchNor (None, 4, 8, 256)    1024        conv2d_9[0][0]
+__________________________________________________________________________________________________
+activation_9 (Activation)       (None, 4, 8, 256)    0           batch_normalization_9[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_4 (MaxPooling2D)  (None, 2, 4, 256)    0           activation_9[0][0]
+__________________________________________________________________________________________________
+flatten (Flatten)               (None, 2048)         0           max_pooling2d_4[0][0]
+__________________________________________________________________________________________________
+char_1 (Dense)                  (None, 50)           102450      flatten[0][0]
+__________________________________________________________________________________________________
+char_2 (Dense)                  (None, 50)           102450      flatten[0][0]
+__________________________________________________________________________________________________
+char_3 (Dense)                  (None, 50)           102450      flatten[0][0]
+__________________________________________________________________________________________________
+char_4 (Dense)                  (None, 50)           102450      flatten[0][0]
+__________________________________________________________________________________________________
+char_5 (Dense)                  (None, 50)           102450      flatten[0][0]
+__________________________________________________________________________________________________
+char_6 (Dense)                  (None, 50)           102450      flatten[0][0]
+==================================================================================================
+Total params: 2,973,004
+Trainable params: 2,970,060
+Non-trainable params: 2,944
+__________________________________________________________________________________________________
+WARNING:tensorflow:From ./train.py:175: Model.fit_generator (from tensorflow.python.keras.engine.training) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use Model.fit, which supports generators.
+Epoch 1/32
+2020-11-15 04:50:51.705613: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+2020-11-15 04:50:51.894664: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-11-15 04:50:52.649217: W tensorflow/core/common_runtime/bfc_allocator.cc:311] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to
+ avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. Y
+ou may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+4999/5000 [============================>.] - ETA: 0s - loss: 11.6601 - char_1_loss: 1.5602 - char_2_loss: 2.0782 - char_3_loss: 2.2551 - char_4_loss: 2.2500 - char_5_loss: 2.0463 - char_6_loss: 1.470
+2 - char_1_accuracy: 0.5859 - char_2_accuracy: 0.4424 - char_3_accuracy: 0.3886 - char_4_accuracy: 0.3905 - char_5_accuracy: 0.4519 - char_6_accuracy: 0.6093WARNING:tensorflow:multiprocessing can int
+eract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 11.6577 - char_1_loss: 1.5599 - char_2_loss: 2.0777 - char_3_loss: 2.2546 - char_4_loss: 2.2496 - char_5_loss: 2.0459 - char_6_loss: 1.469
+9 - char_1_accuracy: 0.5858 - char_2_accuracy: 0.4423 - char_3_accuracy: 0.3885 - char_4_accuracy: 0.3905 - char_5_accuracy: 0.4518 - char_6_accuracy: 0.6092WARNING:tensorflow:multiprocessing can int
+eract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 11.6577 - char_1_loss: 1.5599 - char_2_loss: 2.0777 - char_3_loss: 2.2546 - char_4_loss: 2.2496 - char_5_loss: 2.0459 - char_6_lo
+ss: 1.4699 - char_1_accuracy: 0.5858 - char_2_accuracy: 0.4423 - char_3_accuracy: 0.3885 - char_4_accuracy: 0.3905 - char_5_accuracy: 0.4518 - char_6_accuracy: 0.6092 - val_loss: 5.0221 - val_char_1_
+loss: 0.4402 - val_char_2_loss: 0.9273 - val_char_3_loss: 1.1831 - val_char_4_loss: 1.1542 - val_char_5_loss: 0.8853 - val_char_6_loss: 0.4322 - val_char_1_accuracy: 0.8739 - val_char_2_accuracy: 0.7
+210 - val_char_3_accuracy: 0.6438 - val_char_4_accuracy: 0.6556 - val_char_5_accuracy: 0.7425 - val_char_6_accuracy: 0.8741
+Epoch 2/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 2.7764 - char_1_loss: 0.2418 - char_2_loss: 0.5023 - char_3_loss: 0.6690 - char_4_loss: 0.6592 - char_5_loss: 0.4834 - char_6_loss: 0.2206
+ - char_1_accuracy: 0.9343 - char_2_accuracy: 0.8589 - char_3_accuracy: 0.8024 - char_4_accuracy: 0.8051 - char_5_accuracy: 0.8636 - char_6_accuracy: 0.9391WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 2.7759 - char_1_loss: 0.2418 - char_2_loss: 0.5022 - char_3_loss: 0.6688 - char_4_loss: 0.6591 - char_5_loss: 0.4833 - char_6_loss: 0.2206
+ - char_1_accuracy: 0.9341 - char_2_accuracy: 0.8588 - char_3_accuracy: 0.8023 - char_4_accuracy: 0.8050 - char_5_accuracy: 0.8634 - char_6_accuracy: 0.9389WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 2.7759 - char_1_loss: 0.2418 - char_2_loss: 0.5022 - char_3_loss: 0.6688 - char_4_loss: 0.6591 - char_5_loss: 0.4833 - char_6_los
+s: 0.2206 - char_1_accuracy: 0.9341 - char_2_accuracy: 0.8588 - char_3_accuracy: 0.8023 - char_4_accuracy: 0.8050 - char_5_accuracy: 0.8634 - char_6_accuracy: 0.9389 - val_loss: 2.2187 - val_char_1_l
+oss: 0.1857 - val_char_2_loss: 0.4186 - val_char_3_loss: 0.5382 - val_char_4_loss: 0.5219 - val_char_5_loss: 0.3814 - val_char_6_loss: 0.1729 - val_char_1_accuracy: 0.9427 - val_char_2_accuracy: 0.87
+63 - val_char_3_accuracy: 0.8389 - val_char_4_accuracy: 0.8459 - val_char_5_accuracy: 0.8861 - val_char_6_accuracy: 0.9487
+Epoch 3/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 1.4756 - char_1_loss: 0.1304 - char_2_loss: 0.2759 - char_3_loss: 0.3489 - char_4_loss: 0.3408 - char_5_loss: 0.2608 - char_6_loss: 0.1188
+ - char_1_accuracy: 0.9637 - char_2_accuracy: 0.9218 - char_3_accuracy: 0.8961 - char_4_accuracy: 0.8995 - char_5_accuracy: 0.9243 - char_6_accuracy: 0.9655WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 1.4753 - char_1_loss: 0.1303 - char_2_loss: 0.2758 - char_3_loss: 0.3489 - char_4_loss: 0.3407 - char_5_loss: 0.2608 - char_6_loss: 0.1188
+ - char_1_accuracy: 0.9635 - char_2_accuracy: 0.9216 - char_3_accuracy: 0.8959 - char_4_accuracy: 0.8993 - char_5_accuracy: 0.9241 - char_6_accuracy: 0.9653WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 1.4753 - char_1_loss: 0.1303 - char_2_loss: 0.2758 - char_3_loss: 0.3489 - char_4_loss: 0.3407 - char_5_loss: 0.2608 - char_6_los
+s: 0.1188 - char_1_accuracy: 0.9635 - char_2_accuracy: 0.9216 - char_3_accuracy: 0.8959 - char_4_accuracy: 0.8993 - char_5_accuracy: 0.9241 - char_6_accuracy: 0.9653 - val_loss: 1.6907 - val_char_1_l
+oss: 0.1541 - val_char_2_loss: 0.3339 - val_char_3_loss: 0.3786 - val_char_4_loss: 0.3777 - val_char_5_loss: 0.2981 - val_char_6_loss: 0.1483 - val_char_1_accuracy: 0.9473 - val_char_2_accuracy: 0.89
+33 - val_char_3_accuracy: 0.8806 - val_char_4_accuracy: 0.8786 - val_char_5_accuracy: 0.9065 - val_char_6_accuracy: 0.9482
+Epoch 4/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 1.0163 - char_1_loss: 0.0916 - char_2_loss: 0.1936 - char_3_loss: 0.2358 - char_4_loss: 0.2309 - char_5_loss: 0.1824 - char_6_loss: 0.0819
+ - char_1_accuracy: 0.9737 - char_2_accuracy: 0.9445 - char_3_accuracy: 0.9291 - char_4_accuracy: 0.9307 - char_5_accuracy: 0.9468 - char_6_accuracy: 0.9759WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 1.0161 - char_1_loss: 0.0916 - char_2_loss: 0.1936 - char_3_loss: 0.2358 - char_4_loss: 0.2308 - char_5_loss: 0.1824 - char_6_loss: 0.0819
+ - char_1_accuracy: 0.9735 - char_2_accuracy: 0.9443 - char_3_accuracy: 0.9289 - char_4_accuracy: 0.9305 - char_5_accuracy: 0.9466 - char_6_accuracy: 0.9757WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 1.0161 - char_1_loss: 0.0916 - char_2_loss: 0.1936 - char_3_loss: 0.2358 - char_4_loss: 0.2308 - char_5_loss: 0.1824 - char_6_los
+s: 0.0819 - char_1_accuracy: 0.9735 - char_2_accuracy: 0.9443 - char_3_accuracy: 0.9289 - char_4_accuracy: 0.9305 - char_5_accuracy: 0.9466 - char_6_accuracy: 0.9757 - val_loss: 1.3197 - val_char_1_l
+oss: 0.1090 - val_char_2_loss: 0.2599 - val_char_3_loss: 0.3146 - val_char_4_loss: 0.3105 - val_char_5_loss: 0.2284 - val_char_6_loss: 0.0972 - val_char_1_accuracy: 0.9602 - val_char_2_accuracy: 0.91
+53 - val_char_3_accuracy: 0.8956 - val_char_4_accuracy: 0.8954 - val_char_5_accuracy: 0.9222 - val_char_6_accuracy: 0.9620
+Epoch 5/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.7553 - char_1_loss: 0.0691 - char_2_loss: 0.1463 - char_3_loss: 0.1724 - char_4_loss: 0.1689 - char_5_loss: 0.1369 - char_6_loss: 0.0616
+ - char_1_accuracy: 0.9800 - char_2_accuracy: 0.9579 - char_3_accuracy: 0.9479 - char_4_accuracy: 0.9489 - char_5_accuracy: 0.9598 - char_6_accuracy: 0.9820WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.7552 - char_1_loss: 0.0691 - char_2_loss: 0.1463 - char_3_loss: 0.1724 - char_4_loss: 0.1689 - char_5_loss: 0.1369 - char_6_loss: 0.0616
+ - char_1_accuracy: 0.9798 - char_2_accuracy: 0.9577 - char_3_accuracy: 0.9477 - char_4_accuracy: 0.9487 - char_5_accuracy: 0.9596 - char_6_accuracy: 0.9818WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.7552 - char_1_loss: 0.0691 - char_2_loss: 0.1463 - char_3_loss: 0.1724 - char_4_loss: 0.1689 - char_5_loss: 0.1369 - char_6_los
+s: 0.0616 - char_1_accuracy: 0.9798 - char_2_accuracy: 0.9577 - char_3_accuracy: 0.9477 - char_4_accuracy: 0.9487 - char_5_accuracy: 0.9596 - char_6_accuracy: 0.9818 - val_loss: 1.1778 - val_char_1_l
+oss: 0.1006 - val_char_2_loss: 0.2252 - val_char_3_loss: 0.2766 - val_char_4_loss: 0.2697 - val_char_5_loss: 0.2137 - val_char_6_loss: 0.0920 - val_char_1_accuracy: 0.9589 - val_char_2_accuracy: 0.92
+29 - val_char_3_accuracy: 0.9060 - val_char_4_accuracy: 0.9163 - val_char_5_accuracy: 0.9264 - val_char_6_accuracy: 0.9621
+Epoch 6/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.5786 - char_1_loss: 0.0549 - char_2_loss: 0.1143 - char_3_loss: 0.1290 - char_4_loss: 0.1274 - char_5_loss: 0.1053 - char_6_loss: 0.0477
+ - char_1_accuracy: 0.9841 - char_2_accuracy: 0.9669 - char_3_accuracy: 0.9613 - char_4_accuracy: 0.9619 - char_5_accuracy: 0.9693 - char_6_accuracy: 0.9862WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.5785 - char_1_loss: 0.0549 - char_2_loss: 0.1143 - char_3_loss: 0.1289 - char_4_loss: 0.1274 - char_5_loss: 0.1052 - char_6_loss: 0.0477
+ - char_1_accuracy: 0.9839 - char_2_accuracy: 0.9668 - char_3_accuracy: 0.9611 - char_4_accuracy: 0.9617 - char_5_accuracy: 0.9691 - char_6_accuracy: 0.9860WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.5785 - char_1_loss: 0.0549 - char_2_loss: 0.1143 - char_3_loss: 0.1289 - char_4_loss: 0.1274 - char_5_loss: 0.1052 - char_6_los
+s: 0.0477 - char_1_accuracy: 0.9839 - char_2_accuracy: 0.9668 - char_3_accuracy: 0.9611 - char_4_accuracy: 0.9617 - char_5_accuracy: 0.9691 - char_6_accuracy: 0.9860 - val_loss: 1.1797 - val_char_1_l
+oss: 0.1032 - val_char_2_loss: 0.2293 - val_char_3_loss: 0.2736 - val_char_4_loss: 0.2646 - val_char_5_loss: 0.2084 - val_char_6_loss: 0.1005 - val_char_1_accuracy: 0.9556 - val_char_2_accuracy: 0.91
+89 - val_char_3_accuracy: 0.9059 - val_char_4_accuracy: 0.9057 - val_char_5_accuracy: 0.9234 - val_char_6_accuracy: 0.9572
+Epoch 7/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.4456 - char_1_loss: 0.0428 - char_2_loss: 0.0890 - char_3_loss: 0.0984 - char_4_loss: 0.0964 - char_5_loss: 0.0810 - char_6_loss: 0.0381
+ - char_1_accuracy: 0.9876 - char_2_accuracy: 0.9743 - char_3_accuracy: 0.9713 - char_4_accuracy: 0.9722 - char_5_accuracy: 0.9769 - char_6_accuracy: 0.9889WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.4455 - char_1_loss: 0.0428 - char_2_loss: 0.0890 - char_3_loss: 0.0984 - char_4_loss: 0.0963 - char_5_loss: 0.0810 - char_6_loss: 0.0381
+ - char_1_accuracy: 0.9874 - char_2_accuracy: 0.9741 - char_3_accuracy: 0.9711 - char_4_accuracy: 0.9720 - char_5_accuracy: 0.9767 - char_6_accuracy: 0.9887WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.4455 - char_1_loss: 0.0428 - char_2_loss: 0.0890 - char_3_loss: 0.0984 - char_4_loss: 0.0963 - char_5_loss: 0.0810 - char_6_los
+s: 0.0381 - char_1_accuracy: 0.9874 - char_2_accuracy: 0.9741 - char_3_accuracy: 0.9711 - char_4_accuracy: 0.9720 - char_5_accuracy: 0.9767 - char_6_accuracy: 0.9887 - val_loss: 1.0726 - val_char_1_l
+oss: 0.0891 - val_char_2_loss: 0.2073 - val_char_3_loss: 0.2531 - val_char_4_loss: 0.2492 - val_char_5_loss: 0.1932 - val_char_6_loss: 0.0807 - val_char_1_accuracy: 0.9567 - val_char_2_accuracy: 0.92
+20 - val_char_3_accuracy: 0.9089 - val_char_4_accuracy: 0.9103 - val_char_5_accuracy: 0.9279 - val_char_6_accuracy: 0.9745
+Epoch 8/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.3407 - char_1_loss: 0.0338 - char_2_loss: 0.0691 - char_3_loss: 0.0741 - char_4_loss: 0.0723 - char_5_loss: 0.0624 - char_6_loss: 0.0290
+ - char_1_accuracy: 0.9904 - char_2_accuracy: 0.9808 - char_3_accuracy: 0.9801 - char_4_accuracy: 0.9809 - char_5_accuracy: 0.9828 - char_6_accuracy: 0.9921WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.3406 - char_1_loss: 0.0337 - char_2_loss: 0.0690 - char_3_loss: 0.0741 - char_4_loss: 0.0723 - char_5_loss: 0.0624 - char_6_loss: 0.0290
+ - char_1_accuracy: 0.9902 - char_2_accuracy: 0.9806 - char_3_accuracy: 0.9799 - char_4_accuracy: 0.9807 - char_5_accuracy: 0.9826 - char_6_accuracy: 0.9919WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1723s 345ms/step - loss: 0.3406 - char_1_loss: 0.0337 - char_2_loss: 0.0690 - char_3_loss: 0.0741 - char_4_loss: 0.0723 - char_5_loss: 0.0624 - char_6_los
+s: 0.0290 - char_1_accuracy: 0.9902 - char_2_accuracy: 0.9806 - char_3_accuracy: 0.9799 - char_4_accuracy: 0.9807 - char_5_accuracy: 0.9826 - char_6_accuracy: 0.9919 - val_loss: 1.0393 - val_char_1_l
+oss: 0.0835 - val_char_2_loss: 0.2086 - val_char_3_loss: 0.2433 - val_char_4_loss: 0.2462 - val_char_5_loss: 0.1834 - val_char_6_loss: 0.0744 - val_char_1_accuracy: 0.9589 - val_char_2_accuracy: 0.92
+08 - val_char_3_accuracy: 0.9116 - val_char_4_accuracy: 0.9090 - val_char_5_accuracy: 0.9303 - val_char_6_accuracy: 0.9780
+Epoch 9/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.2583 - char_1_loss: 0.0268 - char_2_loss: 0.0522 - char_3_loss: 0.0555 - char_4_loss: 0.0538 - char_5_loss: 0.0473 - char_6_loss: 0.0227
+ - char_1_accuracy: 0.9931 - char_2_accuracy: 0.9864 - char_3_accuracy: 0.9866 - char_4_accuracy: 0.9870 - char_5_accuracy: 0.9880 - char_6_accuracy: 0.9943WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.2583 - char_1_loss: 0.0268 - char_2_loss: 0.0522 - char_3_loss: 0.0555 - char_4_loss: 0.0537 - char_5_loss: 0.0473 - char_6_loss: 0.0227
+ - char_1_accuracy: 0.9929 - char_2_accuracy: 0.9862 - char_3_accuracy: 0.9864 - char_4_accuracy: 0.9868 - char_5_accuracy: 0.9879 - char_6_accuracy: 0.9941WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.2583 - char_1_loss: 0.0268 - char_2_loss: 0.0522 - char_3_loss: 0.0555 - char_4_loss: 0.0537 - char_5_loss: 0.0473 - char_6_los
+s: 0.0227 - char_1_accuracy: 0.9929 - char_2_accuracy: 0.9862 - char_3_accuracy: 0.9864 - char_4_accuracy: 0.9868 - char_5_accuracy: 0.9879 - char_6_accuracy: 0.9941 - val_loss: 1.0195 - val_char_1_l
+oss: 0.0817 - val_char_2_loss: 0.2021 - val_char_3_loss: 0.2470 - val_char_4_loss: 0.2370 - val_char_5_loss: 0.1795 - val_char_6_loss: 0.0722 - val_char_1_accuracy: 0.9581 - val_char_2_accuracy: 0.92
+36 - val_char_3_accuracy: 0.9088 - val_char_4_accuracy: 0.9141 - val_char_5_accuracy: 0.9294 - val_char_6_accuracy: 0.9789
+Epoch 10/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.1889 - char_1_loss: 0.0200 - char_2_loss: 0.0388 - char_3_loss: 0.0400 - char_4_loss: 0.0387 - char_5_loss: 0.0343 - char_6_loss: 0.0170
+ - char_1_accuracy: 0.9954 - char_2_accuracy: 0.9911 - char_3_accuracy: 0.9919 - char_4_accuracy: 0.9927 - char_5_accuracy: 0.9928 - char_6_accuracy: 0.9963WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.1888 - char_1_loss: 0.0200 - char_2_loss: 0.0388 - char_3_loss: 0.0400 - char_4_loss: 0.0387 - char_5_loss: 0.0343 - char_6_loss: 0.0170
+ - char_1_accuracy: 0.9952 - char_2_accuracy: 0.9909 - char_3_accuracy: 0.9917 - char_4_accuracy: 0.9925 - char_5_accuracy: 0.9926 - char_6_accuracy: 0.9962WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.1888 - char_1_loss: 0.0200 - char_2_loss: 0.0388 - char_3_loss: 0.0400 - char_4_loss: 0.0387 - char_5_loss: 0.0343 - char_6_los
+s: 0.0170 - char_1_accuracy: 0.9952 - char_2_accuracy: 0.9909 - char_3_accuracy: 0.9917 - char_4_accuracy: 0.9925 - char_5_accuracy: 0.9926 - char_6_accuracy: 0.9962 - val_loss: 1.0102 - val_char_1_l
+oss: 0.0801 - val_char_2_loss: 0.1950 - val_char_3_loss: 0.2413 - val_char_4_loss: 0.2388 - val_char_5_loss: 0.1820 - val_char_6_loss: 0.0731 - val_char_1_accuracy: 0.9556 - val_char_2_accuracy: 0.92
+51 - val_char_3_accuracy: 0.9091 - val_char_4_accuracy: 0.9101 - val_char_5_accuracy: 0.9266 - val_char_6_accuracy: 0.9787
+Epoch 11/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.1372 - char_1_loss: 0.0148 - char_2_loss: 0.0279 - char_3_loss: 0.0284 - char_4_loss: 0.0282 - char_5_loss: 0.0250 - char_6_loss: 0.0129
+ - char_1_accuracy: 0.9974 - char_2_accuracy: 0.9951 - char_3_accuracy: 0.9957 - char_4_accuracy: 0.9958 - char_5_accuracy: 0.9959 - char_6_accuracy: 0.9976WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.1371 - char_1_loss: 0.0148 - char_2_loss: 0.0279 - char_3_loss: 0.0284 - char_4_loss: 0.0282 - char_5_loss: 0.0250 - char_6_loss: 0.0129
+ - char_1_accuracy: 0.9972 - char_2_accuracy: 0.9949 - char_3_accuracy: 0.9955 - char_4_accuracy: 0.9956 - char_5_accuracy: 0.9957 - char_6_accuracy: 0.9974WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1724s 345ms/step - loss: 0.1371 - char_1_loss: 0.0148 - char_2_loss: 0.0279 - char_3_loss: 0.0284 - char_4_loss: 0.0282 - char_5_loss: 0.0250 - char_6_los
+s: 0.0129 - char_1_accuracy: 0.9972 - char_2_accuracy: 0.9949 - char_3_accuracy: 0.9955 - char_4_accuracy: 0.9956 - char_5_accuracy: 0.9957 - char_6_accuracy: 0.9974 - val_loss: 0.9927 - val_char_1_l
+oss: 0.0790 - val_char_2_loss: 0.1929 - val_char_3_loss: 0.2399 - val_char_4_loss: 0.2316 - val_char_5_loss: 0.1784 - val_char_6_loss: 0.0711 - val_char_1_accuracy: 0.9537 - val_char_2_accuracy: 0.92
+25 - val_char_3_accuracy: 0.9092 - val_char_4_accuracy: 0.9101 - val_char_5_accuracy: 0.9271 - val_char_6_accuracy: 0.9797
+Epoch 12/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.0994 - char_1_loss: 0.0111 - char_2_loss: 0.0200 - char_3_loss: 0.0208 - char_4_loss: 0.0202 - char_5_loss: 0.0179 - char_6_loss: 0.0094
+ - char_1_accuracy: 0.9986 - char_2_accuracy: 0.9976 - char_3_accuracy: 0.9980 - char_4_accuracy: 0.9982 - char_5_accuracy: 0.9980 - char_6_accuracy: 0.9989WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.0994 - char_1_loss: 0.0111 - char_2_loss: 0.0200 - char_3_loss: 0.0208 - char_4_loss: 0.0202 - char_5_loss: 0.0179 - char_6_loss: 0.0094
+ - char_1_accuracy: 0.9984 - char_2_accuracy: 0.9974 - char_3_accuracy: 0.9978 - char_4_accuracy: 0.9980 - char_5_accuracy: 0.9978 - char_6_accuracy: 0.9987WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1725s 345ms/step - loss: 0.0994 - char_1_loss: 0.0111 - char_2_loss: 0.0200 - char_3_loss: 0.0208 - char_4_loss: 0.0202 - char_5_loss: 0.0179 - char_6_los
+s: 0.0094 - char_1_accuracy: 0.9984 - char_2_accuracy: 0.9974 - char_3_accuracy: 0.9978 - char_4_accuracy: 0.9980 - char_5_accuracy: 0.9978 - char_6_accuracy: 0.9987 - val_loss: 0.9999 - val_char_1_l
+oss: 0.0808 - val_char_2_loss: 0.1926 - val_char_3_loss: 0.2426 - val_char_4_loss: 0.2364 - val_char_5_loss: 0.1795 - val_char_6_loss: 0.0679 - val_char_1_accuracy: 0.9501 - val_char_2_accuracy: 0.92
+14 - val_char_3_accuracy: 0.9076 - val_char_4_accuracy: 0.9076 - val_char_5_accuracy: 0.9233 - val_char_6_accuracy: 0.9806
+Epoch 13/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.0739 - char_1_loss: 0.0083 - char_2_loss: 0.0150 - char_3_loss: 0.0153 - char_4_loss: 0.0150 - char_5_loss: 0.0132 - char_6_loss: 0.0072
+ - char_1_accuracy: 0.9994 - char_2_accuracy: 0.9988 - char_3_accuracy: 0.9992 - char_4_accuracy: 0.9993 - char_5_accuracy: 0.9991 - char_6_accuracy: 0.9994WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.0739 - char_1_loss: 0.0083 - char_2_loss: 0.0150 - char_3_loss: 0.0153 - char_4_loss: 0.0150 - char_5_loss: 0.0132 - char_6_loss: 0.0072
+ - char_1_accuracy: 0.9992 - char_2_accuracy: 0.9987 - char_3_accuracy: 0.9990 - char_4_accuracy: 0.9991 - char_5_accuracy: 0.9989 - char_6_accuracy: 0.9992WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1722s 344ms/step - loss: 0.0739 - char_1_loss: 0.0083 - char_2_loss: 0.0150 - char_3_loss: 0.0153 - char_4_loss: 0.0150 - char_5_loss: 0.0132 - char_6_los
+s: 0.0072 - char_1_accuracy: 0.9992 - char_2_accuracy: 0.9987 - char_3_accuracy: 0.9990 - char_4_accuracy: 0.9991 - char_5_accuracy: 0.9989 - char_6_accuracy: 0.9992 - val_loss: 1.0003 - val_char_1_l
+oss: 0.0807 - val_char_2_loss: 0.1938 - val_char_3_loss: 0.2412 - val_char_4_loss: 0.2370 - val_char_5_loss: 0.1772 - val_char_6_loss: 0.0705 - val_char_1_accuracy: 0.9511 - val_char_2_accuracy: 0.92
+06 - val_char_3_accuracy: 0.9069 - val_char_4_accuracy: 0.9090 - val_char_5_accuracy: 0.9252 - val_char_6_accuracy: 0.9804
+Epoch 14/32
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+4999/5000 [============================>.] - ETA: 0s - loss: 0.0555 - char_1_loss: 0.0062 - char_2_loss: 0.0111 - char_3_loss: 0.0117 - char_4_loss: 0.0112 - char_5_loss: 0.0099 - char_6_loss: 0.0054
+ - char_1_accuracy: 0.9998 - char_2_accuracy: 0.9996 - char_3_accuracy: 0.9997 - char_4_accuracy: 0.9998 - char_5_accuracy: 0.9997 - char_6_accuracy: 0.9998WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - ETA: 0s - loss: 0.0554 - char_1_loss: 0.0062 - char_2_loss: 0.0111 - char_3_loss: 0.0117 - char_4_loss: 0.0112 - char_5_loss: 0.0099 - char_6_loss: 0.0054
+ - char_1_accuracy: 0.9996 - char_2_accuracy: 0.9994 - char_3_accuracy: 0.9995 - char_4_accuracy: 0.9996 - char_5_accuracy: 0.9995 - char_6_accuracy: 0.9996WARNING:tensorflow:multiprocessing can inte
+ract badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+WARNING:tensorflow:multiprocessing can interact badly with TensorFlow, causing nondeterministic deadlocks. For high performance data pipelines tf.data is recommended.
+5000/5000 [==============================] - 1721s 344ms/step - loss: 0.0554 - char_1_loss: 0.0062 - char_2_loss: 0.0111 - char_3_loss: 0.0117 - char_4_loss: 0.0112 - char_5_loss: 0.0099 - char_6_los
+s: 0.0054 - char_1_accuracy: 0.9996 - char_2_accuracy: 0.9994 - char_3_accuracy: 0.9995 - char_4_accuracy: 0.9996 - char_5_accuracy: 0.9995 - char_6_accuracy: 0.9996 - val_loss: 1.0083 - val_char_1_l
+oss: 0.0834 - val_char_2_loss: 0.1955 - val_char_3_loss: 0.2431 - val_char_4_loss: 0.2372 - val_char_5_loss: 0.1816 - val_char_6_loss: 0.0675 - val_char_1_accuracy: 0.9492 - val_char_2_accuracy: 0.91
+85 - val_char_3_accuracy: 0.9057 - val_char_4_accuracy: 0.9070 - val_char_5_accuracy: 0.9209 - val_char_6_accuracy: 0.9809
+┌[contovob@lg12-27] (master=) ~/src/project2
+└$
+
