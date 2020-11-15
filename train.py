@@ -155,7 +155,7 @@ def main():
             model.load_weights(args.input_model)
 
         model.compile(loss='categorical_crossentropy',
-                      optimizer=keras.optimizers.Adam(1e-3, amsgrad=True),
+                      optimizer=keras.optimizers.Adam(1e-4, amsgrad=True),
                       metrics=['accuracy'])
 
         model.summary()
