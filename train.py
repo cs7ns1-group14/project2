@@ -164,7 +164,7 @@ def main():
         validation_data = ImageSequence(args.validate_dataset, args.batch_size, args.length, captcha_symbols, args.width, args.height)
 
         callbacks = [keras.callbacks.EarlyStopping(patience=3),
-                     # keras.callbacks.CSVLogger('log.csv'),
+                     keras.callbacks.CSVLogger(f'{args.output_model_name}-log.csv'),
                      keras.callbacks.ModelCheckpoint(args.output_model_name+'.h5')]
 
         # Save the model architecture to JSON
