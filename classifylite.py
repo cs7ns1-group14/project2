@@ -7,10 +7,9 @@
 #   Basil Contovounesios <contovob@tcd.ie>
 #   Salil Kulkarni <sakulkar@tcd.ie>
 
-import cv2
+from PIL import Image
 import numpy as np
-# from tflite_runtime.interpreter import Interpreter
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 
 import argparse
 import os
@@ -48,15 +47,14 @@ def decode(symbols, predictions):
 def main():
     args = get_args()
     print('Using symbol set:', args.symbols)
-    interpreter = tf.lite.Interpreter(args.model)
+    interpreter = tflite.Interpreter(args.model)
     interpreter.allocate_tensors()
     index = interpreter.get_input_details()[0]['index']
     out_details = interpreter.get_output_details()
     with open(args.output, 'w') as out_file:
         for captcha in sorted(os.listdir(args.directory)):
-            img = cv2.imread(os.path.join(args.directory, captcha))
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            img = img.astype(np.float32) / 255.0
+            img = Image.open(os.path.join(args.directory, captcha))
+            img = np.array(img, np.float32) / 255.0
             img = img.reshape((-1, *img.shape))
             interpreter.set_tensor(index, img)
             interpreter.invoke()
