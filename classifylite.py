@@ -39,6 +39,15 @@ def get_args():
     return args
 
 
+def reporter(msg, total):
+    def update(i, prefix='\b\b\b\b'):
+        pct = int(i * 100 / total)
+        end = '' if i < total else '\n'
+        print(f'{prefix}{pct:3}%', end=end, flush=True)
+    update(0, f'{msg}...')
+    return update
+
+
 def decode(symbols, predictions):
     indices = np.argmax(predictions, axis=2)[:, 0]
     return ''.join(symbols[i] for i in indices).replace(' ', '')
@@ -51,8 +60,13 @@ def main():
     interpreter.allocate_tensors()
     index = interpreter.get_input_details()[0]['index']
     out_details = interpreter.get_output_details()
+
+    abs_dir = os.path.abspath(args.directory)
+    captchas = sorted(os.listdir(args.directory))
+    progress = reporter(f'Classifying CAPTCHAs in {abs_dir}', len(captchas))
+
     with open(args.output, 'w') as out_file:
-        for captcha in sorted(os.listdir(args.directory)):
+        for i, captcha in enumerate(captchas):
             img = Image.open(os.path.join(args.directory, captcha))
             img = np.array(img, np.float32) / 255.0
             img = img.reshape((-1, *img.shape))
@@ -62,7 +76,7 @@ def main():
                            for out in out_details]
             prediction = decode(args.symbols, predictions)
             out_file.write(f'{captcha},{prediction}\n')
-            print('Classified', captcha)
+            progress(i + 1)
 
 
 if __name__ == '__main__':
