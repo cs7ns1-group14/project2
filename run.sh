@@ -22,13 +22,13 @@ usage() {
   exit 1
 }
 
-while getopts m:d:o:S: f; do
+while getopts m:d:o:S:h f; do
   case "$f" in
     m) model="${OPTARG}";;
     d) directory="${OPTARG}";;
     o) output="${OPTARG}";;
     S) syms="${OPTARG}";;
-    \?) usage;;
+    h | \?) usage;;
   esac
 done
 
