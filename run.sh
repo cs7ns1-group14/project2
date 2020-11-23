@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # run.sh - run CAPTCHA classification
 
 # Authors:
@@ -53,7 +53,8 @@ elif [ ! -x "$(command -v deactivate)" ]; then
 fi
 
 echo 'Running classification'
-./classifylite.py -m "${model}" -d "${directory}" -o "${output}" -S "${syms}"
+time ./classifylite.py \
+     -m "${model}" -d "${directory}" -o "${output}" -S "${syms}"
 
 echo 'Deactivating .venv'
 deactivate
