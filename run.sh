@@ -39,8 +39,8 @@ done
 
 echo "Model    : ${model:=models/model1.tflite}"
 echo "CAPTCHAs : ${directory:=img/contovob}"
-echo "Symbols  : ${syms:=results/classified.csv}"
-echo "Output   : ${output:=syms/p2.txt}"
+echo "Symbols  : ${syms:=syms/p2.txt}"
+echo "Output   : ${output:=results/classified.csv}"
 
 if [ ! -d .venv ]; then
   echo 'No .venv directory found; creating'
