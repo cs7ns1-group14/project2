@@ -2,6 +2,8 @@
 
 # CS7NS1 Group 14 Project 2: CAPTCHA Classification
 
+Homepage: https://github.com/cs7ns1-group14/project2/
+
 ### Running classification on a Raspberry Pi
 
 ```sh
