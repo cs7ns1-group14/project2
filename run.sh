@@ -9,16 +9,21 @@ set -o errexit
 set -o nounset
 
 usage() {
-  echo 'Usage: run.sh -m MODEL -d DIR -o OUT -S SYMBOLS'
+  echo 'Usage: run.sh [-m MODEL] [-d DIR] [-o OUT] [-S SYMBOLS]'
   echo
   echo 'Run CAPTCHA classification.'
   echo
   echo 'Options:'
   echo
+  echo '  -h, ?       Print this help text'
   echo '  -m MODEL    TensorFlow Lite file (.tflite)'
+  echo '              (default: models/model1.tflite)'
   echo '  -d DIR      CAPTCHA directory'
+  echo '              (default: img/contovob)'
   echo '  -o OUT      Output CSV'
+  echo '              (default: results/classified.csv)'
   echo '  -S SYMBOLS  CAPTCHA symbol file'
+  echo '              (default: syms/p2.txt)'
   exit 1
 }
 
@@ -32,13 +37,10 @@ while getopts m:d:o:S:h f; do
   esac
 done
 
-[ -z "${model:-}" -o -z "${directory:-}" -o \
-     -z "${output:-}" -o -z "${syms:-}" ] && usage
-
-echo "Model    : ${model}"
-echo "CAPTCHAs : ${directory}"
-echo "Symbols  : ${syms}"
-echo "Output   : ${output}"
+echo "Model    : ${model:=models/model1.tflite}"
+echo "CAPTCHAs : ${directory:=img/contovob}"
+echo "Symbols  : ${syms:=results/classified.csv}"
+echo "Output   : ${output:=syms/p2.txt}"
 
 if [ ! -d .venv ]; then
   echo 'No .venv directory found; creating'
